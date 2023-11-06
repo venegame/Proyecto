@@ -15,24 +15,24 @@ import org.springframework.web.multipart.MultipartFile;
 @Controller
 @RequestMapping("/menus")
 public class MenusController {
-    /*
+
     @Autowired
     private PerfilService perfilService;
-    */
-    @GetMapping("/perfil.html")
+
+    @GetMapping("/perfil")
     public String perfil(Model model) {
         
         //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
         //model.addAttribute("perfiles", listadoPerfiles);
-        return "/perfil";
+        return "menus/perfil";
     }
     
-    @GetMapping("/tickets.html")
+    @GetMapping("/tickets")
     public String tickets(Model model) {
         
         //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
         //model.addAttribute("perfiles", listadoPerfiles);
-        return "/tickets";
+        return "menus/tickets";
     }
 
 }
