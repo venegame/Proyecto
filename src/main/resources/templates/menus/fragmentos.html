@@ -7,6 +7,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       xmlns:th="http://www.thymeleaf.org">
     <head th:replace="layout/plantilla :: head"></head>
     <body>
+
         <section th:fragment="perfilUsuario">
             <style>
                 .ticket {
@@ -32,30 +33,30 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         <div class="row rounded p-3">
                             <div class="col-md-4">
                                 <div class="ticket rounded p-3">
-                                    <p>Fecha de Creación: 01/11/2023</p>
-                                    <p>Número de Tiquete: #12345</p>
-                                    <p>Estado: Activo</p>
+                                    <p>Número de Tiquete:</p>
+                                    <p>Fecha de Creación: </p>
+                                    <p>Estado: </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="ticket rounded p-3">
-                                    <p>Fecha de Creación: 02/11/2023</p>
-                                    <p>Número de Tiquete: #12346</p>
-                                    <p>Estado: Activo</p>
+                                    <p>Número de Tiquete:</p>
+                                    <p>Fecha de Creación: </p>
+                                    <p>Estado: </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="ticket rounded p-3">
-                                    <p>Fecha de Creación: 03/11/2023</p>
-                                    <p>Número de Tiquete: #12347</p>
-                                    <p>Estado: Activo</p>
+                                    <p>Número de Tiquete:</p>
+                                    <p>Fecha de Creación: </p>
+                                    <p>Estado: </p>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="ticket rounded p-3">
-                                    <p>Fecha de Creación: 03/11/2023</p>
-                                    <p>Número de Tiquete: #12347</p>
-                                    <p>Estado: Activo</p>
+                                    <p>Número de Tiquete:</p>
+                                    <p>Fecha de Creación: </p>
+                                    <p>Estado: </p>
                                 </div>
                             </div>
                             <h3>Notificaciones</h3>
@@ -64,6 +65,43 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
                         </div>
                     </div>
+                    </section>
+
+                    <section th:fragment="ticketsActivos">
+                        <style>
+                            .ticket {
+                                background-color: #8ecddd;
+                                padding: 20px;
+                                margin: 10px 0;
+                            }
+                        </style>
+                        <div class="col-md-12 container mt-2">
+                            <h3>Tiquetes Activos</h3>
+                            <div class="row rounded p-3 col-md-12">
+                                <div>
+                                    <div class="ticket rounded p-3">
+                                        <p>Número de Tiquete: #12345</p>
+                                        <p>Resumen: </p>
+                                        <p>Descripcion: </p>
+                                        <p>Fecha de creacion: </p>
+                                        <p>Prioridad: </p>
+                                        <p>Estado: Activo</p>
+                                        <p>Resolucion: </p>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="ticket rounded p-3">
+                                        <p>Número de Tiquete: #12345</p>
+                                        <p>Resumen: </p>
+                                        <p>Descripcion: </p>
+                                        <p>Fecha de creacion: </p>
+                                        <p>Prioridad: </p>
+                                        <p>Estado: Activo</p>
+                                        <p>Resolucion: </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </section>
                     </body>
                     </html>

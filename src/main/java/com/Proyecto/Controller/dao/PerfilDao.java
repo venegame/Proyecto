@@ -4,7 +4,7 @@
  */
 package com.Proyecto.Controller.dao;
 
-import com.Proyecto.Controller.domain.Perfil;
+import com.Proyecto.domain.Perfil;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

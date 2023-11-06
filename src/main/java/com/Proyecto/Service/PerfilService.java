@@ -4,7 +4,7 @@
  */
 package com.Proyecto.Service;
 
-import com.Proyecto.Controller.domain.Perfil;
+import com.Proyecto.domain.Perfil;
 import java.util.List;
 
 /**
@@ -14,5 +14,10 @@ import java.util.List;
 public interface PerfilService {
     
     public List<Perfil> getPerfiles(boolean permisos);
+    
     public Perfil getPerfil(Perfil perfil);
+    
+    public void save(Perfil perfil);
+    
+    public void delete(Perfil perfil);
 }
