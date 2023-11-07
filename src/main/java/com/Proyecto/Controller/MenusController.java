@@ -34,5 +34,13 @@ public class MenusController {
         //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/tickets";
     }
+    
+    @GetMapping("/crearTiquete")
+    public String crarTiquete(Model model) {
+        
+        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
+        //model.addAttribute("perfiles", listadoPerfiles);
+        return "menus/crearTiquete";
+    }
 
 }
