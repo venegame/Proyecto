@@ -45,7 +45,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </div>
                     </section>
-
                     <section th:fragment="ticketsActivos">
                         <style>
                             .ticket {
@@ -54,39 +53,6 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 margin: 10px 0;
                             }
                         </style>
-                        <!-- comment
-                        <div class="col-md-12 container mt-2">
-                            <h3>Tiquetes Activos</h3>
-                            <div class="row rounded p-3 col-md-12">
-                                <table class="table table-striped table-hover"> 
-                                    <table class="table">
-                                        <thead class="table-dark">
-                                            <tr>
-                                                <th>ID</th>
-                                                <th>Resumen</th>
-                                                <th>Descripción</th>
-                                                <th>Prioridad</th>
-                                                <th>Estado</th>
-                                                <th>Ruta de la Imagen</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                        <c:forEach var="ticket" items="${tickets}">
-                                            <tr>
-                                                <td>${ticket.idTicket}</td>
-                                                <td>${ticket.resumen}</td>
-                                                <td>${ticket.descripcion}</td>
-                                                <td>${ticket.prioridad}</td>
-                                                <td>${ticket.estado}</td>
-                                                <td>${ticket.rutaImagen}</td>
-                                            </tr>
-                                        </c:forEach>
-                                        </tbody>
-                                    </table>
-                                </table>
-                            </div>
-                        </div>
-                        -->
                         <h3 class="col-md-12 container mt-4">Tiquetes Activos</h3>
                         <div th:if="${tickets != null and !tickets.empty}">
                             <table class="table table-hover container mt-5">
@@ -114,6 +80,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     </tr>
                                 </tbody>
                             </table>
+                        </div>
+                    </section>
+                    <section th:fragment= "creatTicket">
+                        <div id="agregarCategoria" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            
                         </div>
                     </section>
                     </body>
