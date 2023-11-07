@@ -52,6 +52,123 @@
                                 margin: 10px 0;
                             }
                         </style>
+                        <h3 class="col-md-12 container mt-4">Tiquetes Activos</h3>
+                        <div th:if="${tickets != null and !tickets.empty}">
+                            <table class="table table-hover container mt-5">
+                                <thead class="table-dark">
+                                    <tr>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Resumen</th>
+                                        <th>Descripción</th>
+                                        <th>Prioridad</th>
+                                        <th>Estado</th>
+                                        <th>Ruta de la Imagen</th>
+                                        <th></th>
+                                    </tr>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="tickets, contador : ${tickets}">
+                                        <td>${ticket.idTicket}</td>
+                                        <td>${ticket.resumen}</td>
+                                        <td>${ticket.descripcion}</td>
+                                        <td>${ticket.prioridad}</td>
+                                        <td>${ticket.estado}</td>
+                                        <td>${ticket.rutaImagen}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </section>
+                    <section th:fragment= "creatTicket">
+                        <div class="container">
+                            <h3 class="col-md-12 container mt-4">Descripción del Problema</h3>
+                            <br>
+                            <form enctype="multipart/form-data" action="procesar_formulario.php" method="post">
+                                <div class="form-group">
+                                    <label for="resumen">Resumen:</label>
+                                    <input type="text" class="form-control" name="resumen" required="true"/>
+                                    <br>
+                                    <label for="descripcion">Descripción:</label>
+                                    <textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                                    <br>
+                                    <label for="prioridad">Prioridad</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <option value="1">(P1) Alta</option>
+                                            <option value="2">(P2) Media</option>
+                                            <option value="3">(93) Baja</option>
+                                        </select>
+                                        <label for="floatingSelect">Seleccione su prioridad</label>
+                                    </div>
+                                    <br>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" name="resumen" required="true"/>
+                                    <br>
+                                    <label for="correo">Correo electronico:</label>
+                                    <form class="form-floating">
+                                        <input type="email" class="form-control" id="floatingInputValue" placeholder="nombre@ejemplo.com" requiered="true">
+                                    </form>
+                                </div>
+                                <div class="form-group">
+                                    <br>
+                                    <label for="archivo">Adjuntar Documentos:</label>
+                                    <br>
+                                    <input type="file" class="form-control-file" id="archivo" name="archivo" multiple accept=".pdf, .doc, .docx">
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-success" id="btnCrearTiquete">Crear</button>
+                                <br>
+                                <br>
+                            </form>
+                        </div>
+                        <!-- Ventana emergente -->
+                        <div class="modal" id="numeroTiqueteModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title">Número de Tiquete:</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Campo donde se mostrara el numero de ticket -->
+                                        <input type="text" class="form-control" value="Número Autoincremental" readonly>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="btnCerrarModal" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#btnCrearTiquete').on('click', function () {
+                                    $('#numeroTiqueteModal').modal('show');
+                                });
+
+                                // Funcion al dar click al boton cerrar
+                                $('#btnCerrarModal').on('click', function () {
+                                    // Redirige a la parte de lista de tiquetes
+                                    window.location.href = '/menus/tickets'; 
+                                });
+                            });
+                        </script>
+
+                        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#btnCrearTiquete').on('click', function () {
+                                    $('#numeroTiqueteModal').modal('show');
+                                });
+                            });
+                        </script>
+                    </section>
+                    </body>
+                    </html>
                         <div class="col-md-12 container mt-2">
                             <h3>Tiquetes Activos</h3>
                             <div class="row rounded p-3 col-md-12">
