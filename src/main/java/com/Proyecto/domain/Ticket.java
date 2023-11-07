@@ -14,7 +14,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "ticketManager.tickets")
+@Table(name = "tickets")
 public class Ticket implements Serializable{
     
     @Id

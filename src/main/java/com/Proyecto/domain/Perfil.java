@@ -14,7 +14,7 @@ import lombok.Data;
  */
 @Data
 @Entity
-@Table(name = "ticketManager.personas")
+@Table(name = "personas")
 public class Perfil implements Serializable{
     
     @Id
