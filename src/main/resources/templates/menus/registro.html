@@ -1,0 +1,39 @@
+<html xmlns = "http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="layout/plantilla :: head"></head>
+    <body>
+        <head th:replace="layout/plantilla :: header"></head>
+        <section th:fragment="registro">
+            <style>
+                .ticket {
+                    background-color: #8ecddd;
+                    padding: 10px;
+                    margin: 10px 0;
+                }
+                .form-control::placeholder {
+                    text-align: center;
+                }
+            </style>
+            <div class="container mt-5">
+                <div class="row justify-content-center align-items-center">
+                    <div class="col-md-4">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Crea una cuenta</h5>
+                                <p class="card-text">Correo Electrónico: </p>
+                                <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico"/>
+                                <p class="card-text">Contraseña: </p>
+                                <input type="text" class="form-control" placeholder="Ingresa tu contraseña"/>
+                                <p class="card-text">Confirma la contraseña: </p>
+                                <input type="text" class="form-control" placeholder="Ingresa tu contraseña nuevamente"/>
+                                <button id="btnIniciarSesion" style="margin-top: 10px;">Crear cuenta</button>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <footer th:replace="layout/plantilla :: footer"></footer>
+    </body>
+</html>
