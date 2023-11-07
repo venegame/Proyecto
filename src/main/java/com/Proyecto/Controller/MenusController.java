@@ -32,8 +32,8 @@ public class MenusController {
     @GetMapping("/tickets")
     public String tickets(Model model) {
 
-        List<Ticket> listadoTickets = ticketService.getTickets();
-        model.addAttribute("tickets", listadoTickets);
+        //List<Ticket> listadoTickets = ticketService.getTickets();
+        //model.addAttribute("tickets", listadoTickets);
         return "/menus/tickets";
     }
 
