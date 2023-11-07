@@ -119,11 +119,54 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <input type="file" class="form-control-file" id="archivo" name="archivo" multiple accept=".pdf, .doc, .docx">
                                 </div>
                                 <br>
-                                <button type="submit" class="btn btn-success">Crear</button>
+                                <button type="submit" class="btn btn-success" id="btnCrearTiquete">Crear</button>
                                 <br>
                                 <br>
                             </form>
                         </div>
+                        <!-- Ventana emergente -->
+                        <div class="modal" id="numeroTiqueteModal">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h2 class="modal-title">Número de Tiquete:</h2>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- Campo donde se mostrara el numero de ticket -->
+                                        <input type="text" class="form-control" value="Número Autoincremental" readonly>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" id="btnCerrarModal" data-dismiss="modal">Cerrar</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#btnCrearTiquete').on('click', function () {
+                                    $('#numeroTiqueteModal').modal('show');
+                                });
+
+                                // Funcion al dar click al boton cerrar
+                                $('#btnCerrarModal').on('click', function () {
+                                    // Redirige a la parte de lista de tiquetes
+                                    window.location.href = '/menus/tickets'; 
+                                });
+                            });
+                        </script>
+
+                        <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+                        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
+                        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+                        <script>
+                            $(document).ready(function () {
+                                $('#btnCrearTiquete').on('click', function () {
+                                    $('#numeroTiqueteModal').modal('show');
+                                });
+                            });
+                        </script>
                     </section>
                     </body>
                     </html>
