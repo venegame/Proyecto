@@ -83,8 +83,46 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                         </div>
                     </section>
                     <section th:fragment= "creatTicket">
-                        <div id="agregarCategoria" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            
+                        <div class="container">
+                            <h3 class="col-md-12 container mt-4">Descripción del Problema</h3>
+                            <br>
+                            <form enctype="multipart/form-data" action="procesar_formulario.php" method="post">
+                                <div class="form-group">
+                                    <label for="resumen">Resumen:</label>
+                                    <input type="text" class="form-control" name="resumen" required="true"/>
+                                    <br>
+                                    <label for="descripcion">Descripción:</label>
+                                    <textarea type="text" class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
+                                    <br>
+                                    <label for="prioridad">Prioridad</label>
+                                    <div class="form-floating">
+                                        <select class="form-select" id="floatingSelect" aria-label="Floating label select example">
+                                            <option value="1">(P1) Alta</option>
+                                            <option value="2">(P2) Media</option>
+                                            <option value="3">(93) Baja</option>
+                                        </select>
+                                        <label for="floatingSelect">Seleccione su prioridad</label>
+                                    </div>
+                                    <br>
+                                    <label for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" name="resumen" required="true"/>
+                                    <br>
+                                    <label for="correo">Correo electronico:</label>
+                                    <form class="form-floating">
+                                        <input type="email" class="form-control" id="floatingInputValue" placeholder="nombre@ejemplo.com" requiered="true">
+                                    </form>
+                                </div>
+                                <div class="form-group">
+                                    <br>
+                                    <label for="archivo">Adjuntar Documentos:</label>
+                                    <br>
+                                    <input type="file" class="form-control-file" id="archivo" name="archivo" multiple accept=".pdf, .doc, .docx">
+                                </div>
+                                <br>
+                                <button type="submit" class="btn btn-success">Crear</button>
+                                <br>
+                                <br>
+                            </form>
                         </div>
                     </section>
                     </body>
