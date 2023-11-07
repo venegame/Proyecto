@@ -11,8 +11,13 @@ import java.util.List;
  * @author Me
  */
 public interface TicketService {
+    
     public List<Ticket> getTickets();
+    
     public Ticket getTicket(Ticket ticket);
+    
     public void save(Ticket ticket);
+    
     public void delete(Ticket ticket);
+    
 }

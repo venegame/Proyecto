@@ -9,7 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/menus")
@@ -32,13 +35,13 @@ public class MenusController {
     @GetMapping("/tickets")
     public String tickets(Model model) {
 
-        //List<Ticket> listadoTickets = ticketService.getTickets();
-        //model.addAttribute("tickets", listadoTickets);
+        List<Ticket> listadoTickets = ticketService.getTickets();
+        model.addAttribute("tickets", listadoTickets);
         return "/menus/tickets";
     }
 
     @GetMapping("/crearTiquete")
-    public String crarTiquete(Model model) {
+    public String crearTiquete(Model model) {
 
         //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
         //model.addAttribute("perfiles", listadoPerfiles);
@@ -55,5 +58,13 @@ public class MenusController {
     public String registro(Model model) {
 
         return "menus/registro";
+    }
+    
+    @GetMapping("/menuPrincipal")
+    public String menuPrincipal(Model model) {
+        
+        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
+        //model.addAttribute("perfiles", listadoPerfiles);
+        return "menus/menuPrincipal";
     }
 }
