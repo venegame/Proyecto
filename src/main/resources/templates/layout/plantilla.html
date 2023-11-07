@@ -9,40 +9,40 @@
                 <script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>
                 <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
                 </head>
-                    <body>
-                        <header th:fragment="header" class="header">
-                            <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8ECDDD">
-                                <div class="container">
-                                    <a class="navbar-brand py-3 navbar-dark" th:href="@{/}"><Strong>Support Ticket Manager</Strong></a>
-                                    <a class="btn btn-primary" th:href="@{/menus/crearTiquete}" style="background-color: #22668D; color: white;">Crear ticket</a>
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                                        <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div class="collapse navbar-collapse" id="navbarNav">
-                                        <ul class="navbar-nav ms-auto">
-                                            <li class="nav-item">
-                                                <a class="nav-link" th:href="@{/menus/tickets}">Mis tiquetes</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" th:href="@{/menus/perfil}">Perfil</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" th:href="@{/menus/notificaciones}">Notificaciones</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a class="nav-link" href="#">Configuraciones</a>
-                                            </li>
-                                        </ul>
-                                    </div>
+                <body>
+                    <header th:fragment="header" class="header">
+                        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #8ECDDD">
+                            <div class="container">
+                                <a class="navbar-brand py-3 navbar-dark" th:href="@{/}"><Strong>Support Ticket Manager</Strong></a>
+                                <a class="btn btn-primary" th:href="@{/menus/crearTiquete}" style="background-color: #22668D; color: white;">Crear ticket</a>
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarNav">
+                                    <ul class="navbar-nav ms-auto">
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{/menus/tickets}">Mis tiquetes</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{/menus/perfil}">Perfil</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" th:href="@{/menus/notificaciones}">Notificaciones</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="#">Configuraciones</a>
+                                        </li>
+                                    </ul>
                                 </div>
-                            </nav>
-                            <footer th:fragment="footer" class="container-fluid fixed-bottom" style="background-color: white">
-                                <div class="row">
-                                    <div class="col-md">
-                                        Todos los derechos reservados  &COPY;
-                                    </div>
+                            </div>
+                        </nav>
+                        <footer th:fragment="footer" class="container-fluid fixed-bottom" style="background-color: white">
+                            <div class="row">
+                                <div class="col-md">
+                                    Todos los derechos reservados  &COPY;
                                 </div>
-                            </footer>
-                        </header>
-                    </body>
-                    </html>
+                            </div>
+                        </footer>
+                    </header>
+                </body>
+                </html>
