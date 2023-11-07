@@ -5,7 +5,7 @@
     <body>
 
 
-        <!-------PANTALLA PERFIL DE USUARIO--------------------------------------------------------------------------------------------------------------->
+        <!-------PANTALLA PERFIL DE USUARIO---------------------------------------------------------------------------------------------------------->
         <section th:fragment="perfilUsuario">
             <style>
                 .ticket {
@@ -49,7 +49,7 @@
         </section>
 
 
-        <!-------PANTALLA DE TICKETS ACTIVOS--------------------------------------------------------------------------------------------------------------->
+        <!-------PANTALLA DE TICKETS ACTIVOS--------------------------------------------------------------------------------------------------------->
         <section th:fragment="ticketsActivos">
             <style>
                 .ticket {
@@ -89,7 +89,7 @@
         </section>
 
 
-        <!-------PANTALLA PERFIL DE CREAR UN TICKET-------------------------------------------------------------------------------------------------------->
+        <!-------PANTALLA PERFIL DE CREAR UN TICKET-------------------------------------------------------------------------------------------------->
         <section th:fragment="crearTicket">
             <div class="container">
                 <h3 class="col-md-12 container mt-4">Descripción del Problema</h3>
@@ -172,7 +172,7 @@
         </section>
 
 
-        <!-------PANTALLA DE NOTIFICACIONES---------------------------------------------------------------------------------------------------------------->
+        <!-------PANTALLA DE NOTIFICACIONES---------------------------------------------------------------------------------------------------------->
         <section th:fragment="notificaciones">
             <style>
                 .ticket {
@@ -198,30 +198,28 @@
         </section>
 
 
-        <!-------PANTALLA DE INICIO DE SESION-------------------------------------------------------------------------------------------------------------->
+        <!-------PANTALLA DE INICIO DE SESION-------------------------------------------------------------------------------------------------------->
         <section th:fragment="inicioSesion">
-            <style>
-                .ticket {
-                    background-color: #8ecddd;
-                    padding: 10px;
-                    margin: 10px 0;
-                }
-                .form-control::placeholder {
-                    text-align: center;
-                }
-            </style>
-            <div class="container mt-5">
-                <div class="row justify-content-center align-items-center">
+            <div class="container mt-5" >
+                <div class="row justify-content-center align-items-center p-5">
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card" style="background-color: #22668D">
                             <div class="card-body text-center">
-                                <h5 class="card-title">Inicia Sesión</h5>
-                                <p class="card-text">Correo Electrónico: </p>
+                                <h3 class="card-title" style="color: white">Support Ticket Manager</h3>
+                                <br>
+                                <h5 class="card-title" style="color: white">Inicia Sesión</h5>
+                                <br>
+                                <p class="card-text" style="color: white">Correo Electrónico: </p>
                                 <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico"/>
-                                <p class="card-text">Contraseña: </p>
+                                <br>
+                                <p class="card-text" style="color: white">Contraseña: </p>
                                 <input type="text" class="form-control" placeholder="Ingresa tu contraseña"/>
-                                <a id="btnIniciarSesion" class="btn btn-primary" th:href="@{/menus/menuPrincipal}" style="margin-top: 10px">Iniciar Sesión</a>
-                                <p>¿No tienes una cuenta? <a href="/menus/registro">Registrarse</a></p>
+                                <br>
+                                <a id="btnIniciarSesion" class="btn btn-light" th:href="@{/menus/menuPrincipal}" style="margin-top: 10px;color: white"><span style="color: #22668D">Iniciar Sesión</span></a>
+                                <br>
+                                <br>
+                                <p style="color: white">¿No tienes una cuenta? <a href="/menus/registro" style="color: white">Registrarse</a></p>
+                                <br>
                             </div>
                         </div>
                     </div>
@@ -230,31 +228,27 @@
         </section>
 
 
-        <!-------PANTALLA PERFIL DE REGISTRO--------------------------------------------------------------------------------------------------------------->
+        <!-------PANTALLA PERFIL DE REGISTRO--------------------------------------------------------------------------------------------------------->
         <section th:fragment="registro">
-            <style>
-                .ticket {
-                    background-color: #8ecddd;
-                    padding: 10px;
-                    margin: 10px 0;
-                }
-                .form-control::placeholder {
-                    text-align: center;
-                }
-            </style>
             <div class="container mt-5">
-                <div class="row justify-content-center align-items-center">
+                <div class="row justify-content-center align-items-center p-5">
                     <div class="col-md-4">
                         <div class="card">
-                            <div class="card-body text-center">
-                                <h5 class="card-title">Crea una cuenta</h5>
-                                <p class="card-text">Correo Electrónico: </p>
+                            <div class="card-body text-center" style="background-color: #22668D">
+                                <h5 class="card-title" style="color: white">Crea una cuenta</h5>
+                                <br>
+                                <p class="card-text" style="color: white">Correo Electrónico: </p>
                                 <input type="text" class="form-control" placeholder="Ingresa tu correo electrónico"/>
-                                <p class="card-text">Contraseña: </p>
+                                <br>
+                                <p class="card-text" style="color: white">Contraseña: </p>
                                 <input type="text" class="form-control" placeholder="Ingresa tu contraseña"/>
-                                <p class="card-text">Confirma la contraseña: </p>
+                                <br>
+                                <p class="card-text" style="color: white">Confirma la contraseña: </p>
                                 <input type="text" class="form-control" placeholder="Ingresa tu contraseña nuevamente"/>
-                                <a id="btnRegistro" class="btn btn-primary" th:href="@{/menus/menuPrincipal}" style="margin-top: 10px">Crear cuenta</a>
+                                <br>
+                                <a id="btnRegistro" class="btn btn-light" th:href="@{/menus/menuPrincipal}" style="margin-top: 10px;color: white"><span style="color: #22668D">Crear cuenta</span></a>
+                                <br>
+                                <br>
                             </div>
                         </div>
                     </div>
