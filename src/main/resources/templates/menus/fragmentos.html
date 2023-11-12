@@ -76,12 +76,12 @@
                     </thead>
                     <tbody>
                         <tr th:each="tickets, contador : ${tickets}">
-                            <td>${ticket.idTicket}</td>
-                            <td>${ticket.resumen}</td>
-                            <td>${ticket.descripcion}</td>
-                            <td>${ticket.prioridad}</td>
-                            <td>${ticket.estado}</td>
-                            <td>${ticket.rutaImagen}</td>
+                            <td>[[${tickets.idTicket}]]</td>
+                            <td>[[${tickets.resumen}]]</td>
+                            <td>[[${tickets.descripcion}]]</td>
+                            <td>[[${tickets.prioridad}]]</td>
+                            <td>[[${tickets.estado}]]</td>
+                            <td>[[${tickets.rutaImagen}]]</td>
                         </tr>
                     </tbody>
                 </table>
