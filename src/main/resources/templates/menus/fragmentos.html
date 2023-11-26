@@ -58,7 +58,45 @@
                     margin: 10px 0;
                 }
             </style>
-            <h3 class="col-md-12 container mt-4">Tiquetes Activos</h3>
+            <h3 class="col-md-12 container mt-4">Tiquetes</h3>
+            <!-- comment
+            <div class="mb-4">
+                <h4>Abiertos</h4>
+                <ul class="list-group">
+                    <li class="list-group-item" th:if="tickets : 'Abierto'">
+                        <span th:text="${tickets.idTicket}"></span> - 
+                        <span th:text="${#dates.format(ticket.fechaCreacion, 'dd-MM-yyyy HH:mm')}"></span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="mb-4">
+                <h4>Investigando</h4>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="tickets : ${Investigando}">
+                        <span th:text="${ticket.resumen}"></span> - <span th:text="${#dates.format(ticket.fechaCreacion, 'dd-MM-yyyy HH:mm')}"></span>
+                    </li>
+                </ul>
+            </div>
+            
+            <div class="mb-4">
+                <h4>No soportados</h4>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="tickets : ${No Soportado}">
+                        <span th:text="${ticket.resumen}"></span> - <span th:text="${#dates.format(ticket.fechaCreacion, 'dd-MM-yyyy HH:mm')}"></span>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="mb-4">
+                <h4>Resueltos</h4>
+                <ul class="list-group">
+                    <li class="list-group-item" th:each="tickets : ${Resuelto}">
+                        <span th:text="${ticket.resumen}"></span> - <span th:text="${#dates.format(ticket.fechaCreacion, 'dd-MM-yyyy HH:mm')}"></span>
+                    </li>
+                </ul>
+            </div>
+            -->
             <div th:if="${tickets != null and !tickets.empty}">
                 <table class="table table-hover container mt-5">
                     <thead class="table-dark">
@@ -69,7 +107,6 @@
                             <th>Descripción</th>
                             <th>Prioridad</th>
                             <th>Estado</th>
-                            <th>Ruta de la Imagen</th>
                             <th></th>
                         </tr>
                         </tr>
@@ -81,11 +118,16 @@
                             <td>[[${tickets.descripcion}]]</td>
                             <td>[[${tickets.prioridad}]]</td>
                             <td>[[${tickets.estado}]]</td>
-                            <td>[[${tickets.rutaImagen}]]</td>
+                            <td><a th:href="@{/menus/detallesTicket/}+${tickets.idTicket}"
+                                   class="btn btn-outline-info">
+                                    <i class="bi bi-plus-circle"></i> Ver detalles
+                                </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
             </div>
+
         </section>
 
 
@@ -256,6 +298,38 @@
             </div>
         </section>
 
+        <section th:fragment="detallesTicket">
+            <div class="container mt-3">
+                <a class="btn btn-primary float-right" th:href="@{/menus/tickets}" style="background-color: #999999; color: white; padding: 10px 30px;">Volver </a>
+                <br>
+                <br>
+                <div  style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                    <h3>Detalles del Ticket</h3>
+                    <br>
+                    <h5>ID: <span th:text="${ticket.idTicket}" style="font-weight: normal;color: #666666"></span></h5>
+                    <br>
+                    <h5>Resumen: <span th:text="${ticket.resumen}" style="font-weight: normal;color: #666666"></span></h5>
+                    <br>
+                    <h5>Descripción: <span th:text="${ticket.descripcion}" style="font-weight: normal;color: #666666"></span></h5>
+                    <br>
+                    <h5>Fecha de creacion: <span th:text="${ticket.fechaCreacion}" style="font-weight: normal;color: #666666"></span></h5>
+                    <br>
+                    <h5>Prioridad: <span th:text="${ticket.prioridad}" style="font-weight: normal;color: #666666"></span></h5>
+                    <br>
+                    <h5>Estado: <span th:text="${ticket.estado}" style="font-weight: normal;color: #666666"></span></h5>
+                    <br>
+                    <h5>Resolucion: <span th:text="${ticket.resolucion}" style="font-weight: normal;color: #666666"></span></h5>
+                    <br>
+                    <h5>Comentarios: </h5>
+                    <br>
+                    <a class="btn btn-primary" th:href="@{/}" style="background-color: #22668D; color: white;">Agregar comentario </a>
+                    <br>
+                </div>
+            </div>
+
+            <br>
+            <br>
+        </section>
 
     </body>
 </html>

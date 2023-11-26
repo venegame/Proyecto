@@ -22,19 +22,24 @@ public class Ticket implements Serializable{
     @Column(name = "id_ticket")
     private long idTicket;
     private String resumen;
+    private String fechaCreacion;
     private String descripcion;
     private long prioridad;
     private String estado;
+    private String resolucion;
     private String rutaImagen;
     
     public Ticket (){  
     }
 
-    public Ticket(String resumen, String descripcion, long prioridad, String estado, String rutaImagen) {
+    public Ticket(String resumen, String fechaCreacion, String descripcion, long prioridad, String estado, String resolucion, String rutaImagen) {
         this.resumen = resumen;
+        this.fechaCreacion = fechaCreacion;
         this.descripcion = descripcion;
         this.prioridad = prioridad;
         this.estado = estado;
+        this.resolucion = resolucion;
         this.rutaImagen = rutaImagen;
     }
+
 }

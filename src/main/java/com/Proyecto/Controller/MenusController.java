@@ -67,4 +67,11 @@ public class MenusController {
         //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/menuPrincipal";
     }
+    
+     @GetMapping("/detallesTicket/{idTicket}")
+    public String productoModificar(Ticket ticket, Model model){
+        ticket = ticketService.getTicket(ticket);
+        model.addAttribute("ticket", ticket);
+        return "/menus/detallesticket";
+    }
 }
