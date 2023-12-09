@@ -1,7 +1,10 @@
 package com.Proyecto.controller;
 
+import com.Proyecto.Service.ComentariosService;
 import com.Proyecto.Service.PerfilService;
 import com.Proyecto.Service.TicketService;
+import com.Proyecto.ServiceImp.FirebaseStorageServiceImpl;
+import com.Proyecto.domain.Comentarios;
 import com.Proyecto.domain.Perfil;
 import com.Proyecto.domain.Ticket;
 import java.util.List;
@@ -23,6 +26,12 @@ public class MenusController {
 
     @Autowired
     private TicketService ticketService;
+    
+    @Autowired
+    private ComentariosService comentarioService;
+    
+    @Autowired
+    private FirebaseStorageServiceImpl firebaseStorageService;
 
     @GetMapping("/perfil")
     public String perfil(Model model) {
@@ -30,14 +39,6 @@ public class MenusController {
         //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
         //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/perfil";
-    }
-
-    @GetMapping("/tickets")
-    public String tickets(Model model) {
-
-        List<Ticket> listadoTickets = ticketService.getTickets();
-        model.addAttribute("tickets", listadoTickets);
-        return "/menus/tickets";
     }
 
     @GetMapping("/crearTiquete")
@@ -67,11 +68,5 @@ public class MenusController {
         //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/menuPrincipal";
     }
-    
-     @GetMapping("/detallesTicket/{idTicket}")
-    public String productoModificar(Ticket ticket, Model model){
-        ticket = ticketService.getTicket(ticket);
-        model.addAttribute("ticket", ticket);
-        return "/menus/detallesticket";
-    }
+   
 }
