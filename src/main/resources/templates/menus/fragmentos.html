@@ -122,7 +122,9 @@
                                    class="btn btn-outline-info">
                                     <i class="bi bi-plus-circle"></i> Ver detalles
                                 </a>
-                            </td>
+                                <a href="#" class="btn btn-outline-warning" th:id="'favorito_' + ${tickets.idTicket}" th:onclick="'marcarFavorito(' + ${tickets.idTicket} + ')';">
+                                    <i class="bi bi-star"></i>⭐
+                                </a>
                         </tr>
                     </tbody>
                 </table>
@@ -332,10 +334,10 @@
         </section>
 
         <----------------------<!-- Fragmento reportes -->   
-    
 
-   
-        
+
+
+
     </body>
 </html>
 
