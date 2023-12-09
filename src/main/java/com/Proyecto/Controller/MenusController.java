@@ -1,9 +1,11 @@
 package com.Proyecto.controller;
 
 import com.Proyecto.Service.PerfilService;
+import com.Proyecto.Service.ReporteService;
 import com.Proyecto.Service.TicketService;
 import com.Proyecto.domain.Perfil;
 import com.Proyecto.domain.Ticket;
+import java.util.Calendar;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -23,6 +25,7 @@ public class MenusController {
 
     @Autowired
     private TicketService ticketService;
+
 
     @GetMapping("/perfil")
     public String perfil(Model model) {
@@ -74,4 +77,5 @@ public class MenusController {
         model.addAttribute("ticket", ticket);
         return "/menus/detallesticket";
     }
+
 }
