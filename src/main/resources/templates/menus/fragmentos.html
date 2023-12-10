@@ -53,10 +53,10 @@
             <div class="container">
                 <h3 class="col-md-12 container mt-4">Descripción del Problema</h3>
                 <br>
-                <form enctype="multipart/form-data" action="procesar_formulario.php" method="post">
+                <form enctype="multipart/form-data" th:action="@{/menus/guardarTicket}" th:object="${ticket}" method="POST">
                     <div class="form-group">
                         <label for="resumen">Resumen:</label>
-                        <input type="text" class="form-control" name="resumen" required="true"/>
+                        <input type="text" class="form-control" id="resumen" name="resumen" required="true"/>
                         <br>
                         <label for="descripcion">Descripción:</label>
                         <textarea class="form-control" id="descripcion" name="descripcion" rows="4" required></textarea>
