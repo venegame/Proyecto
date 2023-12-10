@@ -1,7 +1,6 @@
 package com.Proyecto.controller;
 
 import com.Proyecto.Service.ComentariosService;
-import com.Proyecto.Service.PerfilService;
 import com.Proyecto.Service.TicketService;
 import com.Proyecto.ServiceImp.FirebaseStorageServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/menus")
 public class MenusController {
-
-    @Autowired
-    private PerfilService perfilService;
 
     @Autowired
     private TicketService ticketService;

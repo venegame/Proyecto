@@ -4,8 +4,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to c
 Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
 -->
 <html xmlns="http://www.w3.org/1999/xhtm"
-      xmlns:th="http://www.thymeleaf.org">
-    <head>
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="layout/plantilla :: head"></head>
 </head>
 <body>
@@ -18,69 +18,117 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <button class="btn btn-outline-success" type="submit">Buscar</button>
             </form>
             <div class="container mt-4" >
-                <div class="row" >
-                    <div class="col-md-3">
-                        <h5>Abierto</h5>
+                <hr>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <h4 class="col-md-12 container mt-4">Abiertos</h4>
+                    <div th:if="${tickets != null and !tickets.empty}">
+                        <table class="table table-hover container mt-5">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Resumen</th>
+                                    <th>Fecha de Creacion</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Abierto'">
+                                    <td>[[${tickets.idTicket}]]</td>
+                                    <td>[[${tickets.resumen}]]</td>
+                                    <td>[[${tickets.fechaCreacion}]]</td>
+                                    <td>
+                                        <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                           class="btn btn-outline-info">Ver detalles 
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
-                    <div class="col-md-3">
-                        <h5>Investigando</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <h5>No Soportado</h5>
-                    </div>
-                    <div class="col-md-3">
-                        <h5>Resuelto</h5>
-                    </div>
-                    <div class="container mt-4" th:each="tickets, contador : ${tickets}">
-                        <div class="row">
-                            <div class="card mb-3 col-md-2" th:if="${tickets.estado == 'Abierto'}">
-                                <div class="card-body">
-                                    <h6 class="card-subtitle mb-2 text-muted"><p>ID: <span>[[${tickets.idTicket}]]</span></p></h6> 
-                                    <p class="card-text">Resumen: <span>[[${tickets.resumen}]]</span></p>
-                                    <p class="card-text">Fecha de Creación: <span>[[${tickets.fechaCreacion}]]</span></p>
-                                    <p class="card-text">Estado: <span>[[${tickets.estado}]]</span></p>
-                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
-                                       class="btn btn-outline-info">Ver detalles 
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card mb-3 col-md-2" th:if="${tickets.estado == 'Investigando'}">
-                                <div class="card-body">
-                                    <h6 class="card-subtitle mb-2 text-muted"><p>ID: <span>[[${tickets.idTicket}]]</span></p></h6> 
-                                    <p class="card-text">Resumen: <span>[[${tickets.resumen}]]</span></p>
-                                    <p class="card-text">Fecha de Creación: <span>[[${tickets.fechaCreacion}]]</span></p>
-                                    <p class="card-text">Estado: <span>[[${tickets.estado}]]</span></p>
-                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
-                                       class="btn btn-outline-info">Ver detalles 
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card mb-3 col-md-2" th:if="${tickets.estado == 'No Soportado'}">
-                                <div class="card-body">
-                                    <h6 class="card-subtitle mb-2 text-muted"><p>ID: <span>[[${tickets.idTicket}]]</span></p></h6> 
-                                    <p class="card-text">Resumen: <span>[[${tickets.resumen}]]</span></p>
-                                    <p class="card-text">Fecha de Creación: <span>[[${tickets.fechaCreacion}]]</span></p>
-                                    <p class="card-text">Estado: <span>[[${tickets.estado}]]</span></p>
-                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
-                                       class="btn btn-outline-info">Ver detalles 
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="card mb-3 col-md-2" th:if="${tickets.estado == 'Resuelto'}">
-                                <div class="card-body">
-                                    <h6 class="card-subtitle mb-2 text-muted"><p>ID: <span>[[${tickets.idTicket}]]</span></p></h6> 
-                                    <p class="card-text">Resumen: <span>[[${tickets.resumen}]]</span></p>
-                                    <p class="card-text">Fecha de Creación: <span>[[${tickets.fechaCreacion}]]</span></p>
-                                    <p class="card-text">Estado: <span>[[${tickets.estado}]]</span></p>
-                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
-                                       class="btn btn-outline-info">Ver detalles 
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
+                    <br>
+                    <hr>
+                    <h4 class="col-md-12 container mt-4">Investigando</h4>
+                    <div th:if="${tickets != null and !tickets.empty}">
+                        <table class="table table-hover container mt-5">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Resumen</th>
+                                    <th>Fecha de Creacion</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Investigando'">
+                                    <td>[[${tickets.idTicket}]]</td>
+                                    <td>[[${tickets.resumen}]]</td>
+                                    <td>[[${tickets.fechaCreacion}]]</td>
+                                    <td>
+                                        <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                           class="btn btn-outline-info">Ver detalles 
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
+                <br>
+                <hr>
+                <h4 class="col-md-12 container mt-4">No Soportado</h4>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <table class="table table-hover container mt-5">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Resumen</th>
+                                <th>Fecha de Creacion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'No Soportado'">
+                                <td>[[${tickets.idTicket}]]</td>
+                                <td>[[${tickets.resumen}]]</td>
+                                <td>[[${tickets.fechaCreacion}]]</td>
+                                <td>
+                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                       class="btn btn-outline-info">Ver detalles 
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <hr>
+                <h4 class="col-md-12 container mt-4">Resuelto</h4>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <table class="table table-hover container mt-5">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Resumen</th>
+                                <th>Fecha de Creacion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Resuelto'">
+                                <td>[[${tickets.idTicket}]]</td>
+                                <td>[[${tickets.resumen}]]</td>
+                                <td>[[${tickets.fechaCreacion}]]</td>
+                                <td>
+                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                       class="btn btn-outline-info">Ver detalles 
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
             </div>
+            <br>
         </div>
     </section>
 

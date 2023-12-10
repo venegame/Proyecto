@@ -5,11 +5,9 @@
 package com.Proyecto.Controller;
 
 import com.Proyecto.Service.ComentariosService;
-import com.Proyecto.Service.PerfilService;
 import com.Proyecto.Service.TicketService;
 import com.Proyecto.ServiceImp.FirebaseStorageServiceImpl;
 import com.Proyecto.domain.Comentarios;
-import com.Proyecto.domain.Perfil;
 import com.Proyecto.domain.Ticket;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
