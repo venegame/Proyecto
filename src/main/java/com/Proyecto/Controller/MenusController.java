@@ -41,12 +41,19 @@ public class MenusController {
         return "menus/crearTiquete";
     }
     
+//    @PostMapping("/guardarTicket")
+//    public String ticketGuardar(Ticket ticket) {    
+//        ticket.setEstado("activo");
+//        ticket.setFechaCreacion(LocalDateTime.now().toString());
+//        ticketService.save(ticket);
+//        return "redirect:/menus/tickets";
+//    }
     @PostMapping("/guardarTicket")
     public String ticketGuardar(Ticket ticket) {    
-        ticket.setEstado("activo");
+        ticket.setEstado("Abierto");
         ticket.setFechaCreacion(LocalDateTime.now().toString());
         ticketService.save(ticket);
-        return "redirect:/menus/tickets";
+        return "redirect:/";
     }
 
     @GetMapping("/notificaciones")
