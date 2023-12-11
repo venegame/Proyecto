@@ -22,6 +22,7 @@ public class Ticket implements Serializable{
     private String nombre;
     private String correo;
     private String rutaImagen;
+    
     public Ticket (){  
     }
  

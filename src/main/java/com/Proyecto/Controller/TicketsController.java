@@ -72,8 +72,6 @@ public class TicketsController {
                             comentarios.getIdTicketComentario()));
         }
         comentarioService.save(comentarios);
-        
-        //return "redirect:/tickets/listado";
         return "redirect:/tickets/detallesTicket/" + comentarios.getIdTicket();
     }
 }

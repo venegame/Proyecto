@@ -1,6 +1,5 @@
 package com.Proyecto.controller;
 
-import com.Proyecto.Service.ComentariosService;
 import com.Proyecto.Service.TicketService;
 import com.Proyecto.ServiceImp.FirebaseStorageServiceImpl;
 import com.Proyecto.domain.Ticket;
@@ -22,42 +21,42 @@ public class MenusController {
     private TicketService ticketService;
 
     @Autowired
-    private ComentariosService comentarioService;
-
-    @Autowired
     private FirebaseStorageServiceImpl firebaseStorageService;
 
     @GetMapping("/perfil")
     public String perfil(Model model) {
 
-        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
-        //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/perfil";
     }
 
     @GetMapping("/crearTiquete")
     public String crearTiquete(Model model) {
 
-        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
-        //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/crearTiquete";
     }
 
     @PostMapping("/guardarTicket")
     public String ticketGuardar(Ticket ticket,
-            @RequestParam("imagenFile") MultipartFile imagenFile) {    
-//        if (!imagenFile.isEmpty()) {
-//            ticketService.save(ticket);
-//            ticket.setRutaImagen(
-//                    firebaseStorageService.cargaImagen(
-//                            imagenFile, 
-//                            "ticket", 
-//                            ticket.getIdTicket()));
-//        }
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
+        if (!imagenFile.isEmpty()) 
+        {
+            ticket.setRutaImagen(
+                    firebaseStorageService.cargaImagen(
+                            imagenFile,
+                            "ticket",
+                            ticket.getIdTicket()));
+        }
         ticket.setEstado("Abierto");
         ticket.setFechaCreacion(LocalDateTime.now().toString());
         ticketService.save(ticket);
-        return "redirect:/";
+        return "redirect:/menus/confirmacion";
+    }
+    
+    @GetMapping("/confirmacion")
+    public String confirmacion(Ticket ticket, Model model) {
+        ticket = ticketService.getTicket(ticket);
+        model.addAttribute("ticket", ticket);
+        return "tickets/listado";
     }
 
     @GetMapping("/notificaciones")
@@ -75,8 +74,6 @@ public class MenusController {
     @GetMapping("/menuPrincipal")
     public String menuPrincipal(Model model) {
 
-        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
-        //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/menuPrincipal";
     }
 

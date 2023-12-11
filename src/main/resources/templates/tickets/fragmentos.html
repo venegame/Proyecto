@@ -159,6 +159,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 <br>
                 <h5>Correo: <span th:text="${ticket.correo}" style="font-weight: normal;color: #666666"></span></h5>
                 <br>
+                <div th:if="${ticket.rutaImagen != null}">
+                    <div class="card-body">
+                        <h5>Archivos adjuntos:</h5>
+                        <img th:src="@{${ticket.rutaImagen}}" height="200"/>
+                    </div>
+                </div>
                 <h5>Resolucion: <span th:text="${ticket.resolucion}" style="font-weight: normal;color: #666666"></span></h5>
                 <br>
                 <h5>Comentarios: </h5>
@@ -202,7 +208,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
               method="POST" class="was-validated mx-auto w-75"
               enctype="multipart/form-data">
             <div class="mb-5">
-                <input type="hidden" th:field="${comentarios.idTicket}" th:value="ticket.idTicket" />
+                <input type="hidden" th:field="${comentarios.idTicket}" th:value="ticket.idTicket"/>
                 <div class="mb-3">
                     <label for="comentario">Comentario: </label>
                     <input type="text" class="form-control" name="comentario" required="true"/>

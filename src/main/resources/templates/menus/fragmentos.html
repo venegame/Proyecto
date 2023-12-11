@@ -55,6 +55,7 @@
                 <br>
                 <form enctype="multipart/form-data" th:action="@{/menus/guardarTicket}" th:object="${ticket}" method="POST">
                     <div class="form-group">
+                        <!-- comment <input type="hidden" th:field="${ticket.estado}" th:value="Abierto"/>-->
                         <label for="resumen">Resumen:</label>
                         <input type="text" class="form-control" id="resumen" name="resumen" required="true"/>
                         <br>
@@ -87,12 +88,12 @@
                         <br>
                         <label for="correo">Correo electrónico:</label>
                         <input type="email" class="form-control" id="correo" name="correo" placeholder="nombre@ejemplo.com" required="true">
-                    </div>
-                    <div class="form-group">
-                        <br>
-                        <label for="archivo">Adjuntar Documentos:</label>
-                        <br>
-                        <input type="file" class="form-control-file" id="archivo" name="archivo" multiple accept=".pdf, .doc, .docx, .jpg, .png, .jpeg">
+                        <div class="mb-3">
+                            <label for="imagen">Imagen: </label>
+                            <input class="form-control" type="file" name="imagenFile"
+                                   onchange="readURL(this);"/>
+                            <img id="blah" src="#" alt="your image" height="200"/>
+                        </div>
                     </div>
                     <br>
                     <button type="submit" class="btn btn-success" id="btnCrearTiquete">Crear</button>
@@ -100,45 +101,6 @@
                     <br>
                 </form>     
             </div>
-            <div class="modal" id="numeroTiqueteModal">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h2 class="modal-title">Número de Tiquete:</h2>
-                        </div>
-                        <div class="modal-body">
-                            <!-- Campo donde se mostrara el numero de ticket -->
-                            <input type="text" class="form-control" value="Número Autoincremental" readonly>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" id="btnCerrarModal" data-dismiss="modal">Cerrar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <script>
-                $(document).ready(function () {
-                    $('#btnCrearTiquete').on('click', function () {
-                        $('#numeroTiqueteModal').modal('show');
-                    });
-
-                    // Funcion al dar click al boton cerrar
-                    $('#btnCerrarModal').on('click', function () {
-                        // Redirige a la parte de lista de tiquetes
-                        window.location.href = '/menus/tickets';
-                    });
-                });
-            </script>
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-            <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-            <script>
-                $(document).ready(function () {
-                    $('#btnCrearTiquete').on('click', function () {
-                        $('#numeroTiqueteModal').modal('show');
-                    });
-                });
-            </script>
         </section>
 
 
