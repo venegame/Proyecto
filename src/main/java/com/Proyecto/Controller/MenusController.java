@@ -1,11 +1,9 @@
 package com.Proyecto.controller;
 
-import com.Proyecto.Service.PerfilService;
-import com.Proyecto.Service.ReporteService;
 import com.Proyecto.Service.TicketService;
-import com.Proyecto.domain.Perfil;
+import com.Proyecto.ServiceImp.FirebaseStorageServiceImpl;
 import com.Proyecto.domain.Ticket;
-import java.util.Calendar;
+import java.time.LocalDateTime;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,34 +19,46 @@ import org.springframework.web.multipart.MultipartFile;
 public class MenusController {
 
     @Autowired
-    private PerfilService perfilService;
-
-    @Autowired
     private TicketService ticketService;
 
+    @Autowired
+    private FirebaseStorageServiceImpl firebaseStorageService;
 
     @GetMapping("/perfil")
     public String perfil(Model model) {
 
-        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
-        //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/perfil";
-    }
-
-    @GetMapping("/tickets")
-    public String tickets(Model model) {
-
-        List<Ticket> listadoTickets = ticketService.getTickets();
-        model.addAttribute("tickets", listadoTickets);
-        return "/menus/tickets";
     }
 
     @GetMapping("/crearTiquete")
     public String crearTiquete(Model model) {
 
-        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
-        //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/crearTiquete";
+    }
+
+    @PostMapping("/guardarTicket")
+    public String ticketGuardar(Ticket ticket,
+            @RequestParam("imagenFile") MultipartFile imagenFile) {
+        if (!imagenFile.isEmpty()) 
+        {
+            ticket.setRutaImagen(
+                    firebaseStorageService.cargaImagen(
+                            imagenFile,
+                            "ticket",
+                            ticket.getIdTicket()));
+        }
+        ticket.setEstado("Abierto");
+        ticket.setFechaCreacion(LocalDateTime.now().toString());
+        ticketService.save(ticket);
+        ticket.getIdTicket();
+        return "redirect:/menus/confirmacion";
+    }
+    
+    @GetMapping("confirmacion")
+    public String confirmacion(Ticket ticket, Model model) {
+        List<Ticket> listadoTickets = ticketService.getTickets();
+        model.addAttribute("tickets", listadoTickets);
+        return "menus/confirmacion";
     }
 
     @GetMapping("/notificaciones")
@@ -62,20 +72,11 @@ public class MenusController {
 
         return "menus/registro";
     }
-    
+
     @GetMapping("/menuPrincipal")
     public String menuPrincipal(Model model) {
-        
-        //List<Perfil> listadoPerfiles = perfilService.getPerfiles(true);
-        //model.addAttribute("perfiles", listadoPerfiles);
+
         return "menus/menuPrincipal";
-    }
-    
-     @GetMapping("/detallesTicket/{idTicket}")
-    public String productoModificar(Ticket ticket, Model model){
-        ticket = ticketService.getTicket(ticket);
-        model.addAttribute("ticket", ticket);
-        return "/menus/detallesticket";
     }
 
 }

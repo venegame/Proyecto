@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html xmlns="http://www.w3.org/1999/xhtm"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
+    <head th:replace="layout/plantilla :: head"></head>
+</head>
+<body>
+    <!--TICKETS ACTIVOS---------------------------------------------------------------------------------------------------------------------------------->
+    <section th:fragment="ticketsActivos" id="Tickets">
+        <h3 class="col-md-12 container mt-4">Tiquetes</h3>
+        <div th:if="${tickets != null and !tickets.empty}">
+            <form class="d-flex mt-4" style="margin-left: 1140px;">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search" style="width: 200px;">
+                <button class="btn btn-outline-success" type="submit">Buscar</button>
+            </form>
+            <div class="container mt-4" >
+                <hr>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <h4 class="col-md-12 container mt-4">Abiertos</h4>
+                    <div th:if="${tickets != null and !tickets.empty}">
+                        <table class="table table-hover container mt-5">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Resumen</th>
+                                    <th>Fecha de Creacion</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Abierto'">
+                                    <td>[[${tickets.idTicket}]]</td>
+                                    <td>[[${tickets.resumen}]]</td>
+                                    <td>[[${tickets.fechaCreacion}]]</td>
+                                    <td>
+                                        <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                           class="btn btn-outline-info">Ver detalles 
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <br>
+                    <hr>
+                    <h4 class="col-md-12 container mt-4">Investigando</h4>
+                    <div th:if="${tickets != null and !tickets.empty}">
+                        <table class="table table-hover container mt-5">
+                            <thead class="table-dark">
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Resumen</th>
+                                    <th>Fecha de Creacion</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Investigando'">
+                                    <td>[[${tickets.idTicket}]]</td>
+                                    <td>[[${tickets.resumen}]]</td>
+                                    <td>[[${tickets.fechaCreacion}]]</td>
+                                    <td>
+                                        <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                           class="btn btn-outline-info">Ver detalles 
+                                        </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <br>
+                <hr>
+                <h4 class="col-md-12 container mt-4">No Soportado</h4>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <table class="table table-hover container mt-5">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Resumen</th>
+                                <th>Fecha de Creacion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'No Soportado'">
+                                <td>[[${tickets.idTicket}]]</td>
+                                <td>[[${tickets.resumen}]]</td>
+                                <td>[[${tickets.fechaCreacion}]]</td>
+                                <td>
+                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                       class="btn btn-outline-info">Ver detalles 
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <hr>
+                <h4 class="col-md-12 container mt-4">Resuelto</h4>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <table class="table table-hover container mt-5">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Resumen</th>
+                                <th>Fecha de Creacion</th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Resuelto'">
+                                <td>[[${tickets.idTicket}]]</td>
+                                <td>[[${tickets.resumen}]]</td>
+                                <td>[[${tickets.fechaCreacion}]]</td>
+                                <td>
+                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                       class="btn btn-outline-info">Ver detalles 
+                                    </a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <br>
+        </div>
+    </section>
+
+    <!-------PANTALLA DETALLES TICKET--------------------------------------------------------------------------------------------------------->
+    <section th:fragment="detallesTicket">
+        <div class="container mt-3">
+            <a class="btn btn-outline-secondary float-right" th:href="@{/tickets/listado}" style="padding: 10px 30px;">Volver </a>
+            <br>
+            <br>
+            <div  style="background-color: #ffffff; padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);">
+                <h3>Detalles del Ticket</h3>
+                <br>
+                <h5>ID: <span th:text="${ticket.idTicket}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Resumen: <span th:text="${ticket.resumen}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Descripción: <span th:text="${ticket.descripcion}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Fecha de creacion: <span th:text="${ticket.fechaCreacion}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Prioridad: <span th:text="${ticket.prioridad}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Estado: <span th:text="${ticket.estado}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Tipo de error: <span th:text="${ticket.tipoError}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Nombre: <span th:text="${ticket.nombre}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Correo: <span th:text="${ticket.correo}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <div th:if="${ticket.rutaImagen != null}">
+                    <div class="card-body">
+                        <h5>Archivos adjuntos:</h5>
+                        <img th:src="@{${ticket.rutaImagen}}" height="200"/>
+                    </div>
+                </div>
+                <h5>Resolucion: <span th:text="${ticket.resolucion}" style="font-weight: normal;color: #666666"></span></h5>
+                <br>
+                <h5>Comentarios: </h5>
+                <br>
+                <a th:href="@{/tickets/comentarios/}+${ticket.idTicket}"
+                   class="btn btn-outline-info">Agregar Comentario 
+                </a>
+                <br>
+                <div th:each="comentarios : ${comentarios}">
+                    <div th:if="${ticket.idTicket == comentarios.idTicket}">
+                        <div class="container mt-4" id="Comentarios">
+                            <div class="row">
+                                <div class="container">
+                                    <div class="col">
+                                        <div class="card mb-1 col-md-12">
+                                            <div class="card-body" >
+                                                <h5>Comentario: <span th:text="${comentarios.comentario}" style="font-weight: normal;color: #666666"></span></h5>
+                                            </div>
+                                            <div th:if="${comentarios.rutaImagen != null}">
+                                                <div class="card-body">
+                                                    <h5>Archivos adjuntos:</h5>
+                                                    <img th:src="@{${comentarios.rutaImagen}}" height="200"/>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+    </section>
+
+    <!-------PANTALLA AGREGAR COMENTARIO--------------------------------------------------------------------------------------------------------->
+    <section th:fragment="agregarComentario" class="mt-5 mb-5">
+        <form th:action="@{/tickets/comentarios/guardar}" th:object="${comentarios}"
+              method="POST" class="was-validated mx-auto w-75"
+              enctype="multipart/form-data">
+            <div class="mb-5">
+                <input type="hidden" th:field="${comentarios.idTicket}" th:value="ticket.idTicket"/>
+                <div class="mb-3">
+                    <label for="comentario">Comentario: </label>
+                    <input type="text" class="form-control" name="comentario" required="true"/>
+                </div>
+                <div class="mb-3">
+                    <label for="imagen">Imagen: </label>
+                    <input class="form-control" type="file" name="imagenFile"
+                           onchange="readURL(this);"/>
+                    <img id="blah" src="#" alt="your image" height="200"/>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" type="submit">Guardar</button>
+                </div>
+            </div>
+        </form>
+    </section>
+</body>
+</html>

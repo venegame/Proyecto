@@ -9,7 +9,7 @@ import jakarta.persistence.Table;
 import java.io.Serializable;
 
 @Entity
-@Table(name = "ticketManager.notificaciones")
+@Table(name = "notificaciones")
 public class Notificaciones implements Serializable{
     
     @Id
@@ -19,7 +19,7 @@ public class Notificaciones implements Serializable{
     private String estado;
     private String rutaImagen;
     private String tecnico;
-    
+
     public Notificaciones (){  
     }
 
@@ -28,4 +28,6 @@ public class Notificaciones implements Serializable{
         this.rutaImagen = rutaImagen;
         this.tecnico = tecnico;
     }
+
+    
 }
