@@ -4,7 +4,6 @@
     <head th:replace="layout/plantilla :: head"></head>
     <body>
 
-
         <!-------PANTALLA PERFIL DE USUARIO---------------------------------------------------------------------------------------------------------->
         <section th:fragment="perfilUsuario">
             <style>
@@ -52,7 +51,6 @@
         <section th:fragment="crearTicket">
             <div class="container">
                 <h3 class="col-md-12 container mt-4">Descripción del Problema</h3>
-                <br>
                 <form enctype="multipart/form-data" th:action="@{/menus/guardarTicket}" th:object="${ticket}" method="POST">
                     <div class="form-group">
                         <!-- comment <input type="hidden" th:field="${ticket.estado}" th:value="Abierto"/>-->
@@ -88,15 +86,17 @@
                         <br>
                         <label for="correo">Correo electrónico:</label>
                         <input type="email" class="form-control" id="correo" name="correo" placeholder="nombre@ejemplo.com" required="true">
+                        <br>
                         <div class="mb-3">
                             <label for="imagen">Imagen: </label>
                             <input class="form-control" type="file" name="imagenFile"
                                    onchange="readURL(this);"/>
-                            <img id="blah" src="#" alt="your image" height="200"/>
+                            <img id="blah" src="#" alt="Su archivo" height="200"/>
                         </div>
                     </div>
-                    <br>
                     <button type="submit" class="btn btn-success" id="btnCrearTiquete">Crear</button>
+                    <br>
+                    <br>
                     <br>
                     <br>
                 </form>     
@@ -188,6 +188,22 @@
             </div>
         </section>
 
+
+        <section th:fragment="confirmacion" id="confirmacion">
+            <div th:if="${tickets != null and !tickets.empty}" class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="alert alert-success text-center">
+                            <p>Querido/a <span th:text="${tickets[tickets.size() - 1].nombre}"></span>,<br><br>¡Muchas gracias por contactarnos! En unos minutos uno de nuestros agentes va a contactarlo directamente.<br><br></p>
+                            <h5 class="font-weight-normal text-dark">Su numero de confirmacion es: <span th:text="${tickets[tickets.size() - 1].idTicket}"></span></h5>
+                            <br>
+                            <a th:href="@{/menus/menuPrincipal}" class="btn btn-secondary mr-2">Volver</a>
+                            <a th:href="@{/tickets/listado}" class="btn btn-secondary">Ver tickets</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
     </body>
 </html>
 

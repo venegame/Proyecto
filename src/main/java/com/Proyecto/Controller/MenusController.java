@@ -4,6 +4,7 @@ import com.Proyecto.Service.TicketService;
 import com.Proyecto.ServiceImp.FirebaseStorageServiceImpl;
 import com.Proyecto.domain.Ticket;
 import java.time.LocalDateTime;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -49,14 +50,15 @@ public class MenusController {
         ticket.setEstado("Abierto");
         ticket.setFechaCreacion(LocalDateTime.now().toString());
         ticketService.save(ticket);
+        ticket.getIdTicket();
         return "redirect:/menus/confirmacion";
     }
     
-    @GetMapping("/confirmacion")
+    @GetMapping("confirmacion")
     public String confirmacion(Ticket ticket, Model model) {
-        ticket = ticketService.getTicket(ticket);
-        model.addAttribute("ticket", ticket);
-        return "tickets/listado";
+        List<Ticket> listadoTickets = ticketService.getTickets();
+        model.addAttribute("tickets", listadoTickets);
+        return "menus/confirmacion";
     }
 
     @GetMapping("/notificaciones")
