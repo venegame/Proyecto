@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/menus")
@@ -40,16 +42,18 @@ public class MenusController {
         //model.addAttribute("perfiles", listadoPerfiles);
         return "menus/crearTiquete";
     }
-    
-//    @PostMapping("/guardarTicket")
-//    public String ticketGuardar(Ticket ticket) {    
-//        ticket.setEstado("activo");
-//        ticket.setFechaCreacion(LocalDateTime.now().toString());
-//        ticketService.save(ticket);
-//        return "redirect:/menus/tickets";
-//    }
+
     @PostMapping("/guardarTicket")
-    public String ticketGuardar(Ticket ticket) {    
+    public String ticketGuardar(Ticket ticket,
+            @RequestParam("imagenFile") MultipartFile imagenFile) {    
+//        if (!imagenFile.isEmpty()) {
+//            ticketService.save(ticket);
+//            ticket.setRutaImagen(
+//                    firebaseStorageService.cargaImagen(
+//                            imagenFile, 
+//                            "ticket", 
+//                            ticket.getIdTicket()));
+//        }
         ticket.setEstado("Abierto");
         ticket.setFechaCreacion(LocalDateTime.now().toString());
         ticketService.save(ticket);
