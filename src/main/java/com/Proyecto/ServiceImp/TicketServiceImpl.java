@@ -45,5 +45,4 @@ public class TicketServiceImpl implements TicketService{
         ticketDao.delete(ticket);
     }
 
-    
 }
