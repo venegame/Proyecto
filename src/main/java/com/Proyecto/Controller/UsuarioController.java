@@ -58,9 +58,7 @@ public class UsuarioController {
             usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
             usuario.setActivo(true); // Para crearlo siempre activo
         }
-        
         usuario.setPassword(new BCryptPasswordEncoder().encode(usuario.getPassword()));
-        
         usuarioService.save(usuario, nuevo);
         return "redirect:/usuario/listado";
     }

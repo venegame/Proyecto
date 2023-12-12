@@ -19,60 +19,133 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
             </form>
             <div class="container mt-4" >
                 <hr>
+                <h4 class="col-md-12 container mt-4">Favoritos</h4>
                 <div th:if="${tickets != null and !tickets.empty}">
-                    <h4 class="col-md-12 container mt-4">Abiertos</h4>
-                    <div th:if="${tickets != null and !tickets.empty}">
-                        <table class="table table-hover container mt-5">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Resumen</th>
-                                    <th>Fecha de Creacion</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Abierto'">
-                                    <td>[[${tickets.idTicket}]]</td>
-                                    <td>[[${tickets.resumen}]]</td>
-                                    <td>[[${tickets.fechaCreacion}]]</td>
-                                    <td>
-                                        <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
-                                           class="btn btn-outline-info">Ver detalles 
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <br>
-                    <hr>
-                    <h4 class="col-md-12 container mt-4">Investigando</h4>
-                    <div th:if="${tickets != null and !tickets.empty}">
-                        <table class="table table-hover container mt-5">
-                            <thead class="table-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>Resumen</th>
-                                    <th>Fecha de Creacion</th>
-                                    <th></th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Investigando'">
-                                    <td>[[${tickets.idTicket}]]</td>
-                                    <td>[[${tickets.resumen}]]</td>
-                                    <td>[[${tickets.fechaCreacion}]]</td>
-                                    <td>
-                                        <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
-                                           class="btn btn-outline-info">Ver detalles 
-                                        </a>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table class="table table-hover container mt-5">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Resumen</th>
+                                <th>Fecha de Creacion</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.favorito} == True">
+                                <td>[[${tickets.idTicket}]]</td>
+                                <td>[[${tickets.resumen}]]</td>
+                                <td>[[${tickets.fechaCreacion}]]</td>
+                                <td></td>
+                                <td>
+                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                       class="btn btn-outline-info">Ver detalles 
+                                    </a>
+                                </td>
+                                <td>
+                                    <form method="POST" th:action="@{/tickets/favoritos/}+${tickets.idTicket}">
+                                        <div th:if="${tickets.favorito} == True">
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-heart" th:action="@{tickets/favoritos}"></i> Quitar Favorito
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
+                <br>
+                <hr>
+                <h4 class="col-md-12 container mt-4">Abiertos</h4>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <table class="table table-hover container mt-5">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Resumen</th>
+                                <th>Fecha de Creacion</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Abierto'">
+                                <td>[[${tickets.idTicket}]]</td>
+                                <td>[[${tickets.resumen}]]</td>
+                                <td>[[${tickets.fechaCreacion}]]</td>
+                                <td></td>
+                                <td>
+                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                       class="btn btn-outline-info">Ver detalles 
+                                    </a>
+                                </td>
+                                <td>
+                                    <form method="POST" th:action="@{/tickets/favoritos/}+${tickets.idTicket}">
+                                        <div th:if="${tickets.favorito} == True">
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-heart" th:action="@{tickets/favoritos}"></i> Quitar Favorito
+                                            </button>
+                                        </div>
+                                        <div th:if="${tickets.favorito} == False">
+                                            <button class="btn btn-outline-danger">
+                                                <i class="fas fa-heart" type="submit"></i> Agregar Favorito
+
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <br>
+                <hr>
+                <h4 class="col-md-12 container mt-4">Investigando</h4>
+                <div th:if="${tickets != null and !tickets.empty}">
+                    <table class="table table-hover container mt-5">
+                        <thead class="table-dark">
+                            <tr>
+                                <th>ID</th>
+                                <th>Resumen</th>
+                                <th>Fecha de Creacion</th>
+                                <th></th>
+                                <th></th>
+                                <th></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="tickets, contador : ${tickets}"  th:if="${tickets.estado} == 'Investigando'">
+                                <td>[[${tickets.idTicket}]]</td>
+                                <td>[[${tickets.resumen}]]</td>
+                                <td>[[${tickets.fechaCreacion}]]</td>
+                                <td>
+                                    <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
+                                       class="btn btn-outline-info">Ver detalles 
+                                    </a>
+                                </td>
+                                <td>
+                                    <form method="POST" th:action="@{/tickets/favoritos/}+${tickets.idTicket}">
+                                        <div th:if="${tickets.favorito} == True">
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-heart" th:action="@{tickets/favoritos}"></i> Quitar Favorito
+                                            </button>
+                                        </div>
+                                        <div th:if="${tickets.favorito} == False">
+                                            <button class="btn btn-outline-danger">
+                                                <i class="fas fa-heart" type="submit"></i> Agregar Favorito
+
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
                 <br>
                 <hr>
                 <h4 class="col-md-12 container mt-4">No Soportado</h4>
@@ -83,6 +156,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <th>ID</th>
                                 <th>Resumen</th>
                                 <th>Fecha de Creacion</th>
+                                <th></th>
+                                <th></th>
                                 <th></th>
                             </tr>
                         </thead>
@@ -95,6 +170,21 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                     <a th:href="@{/tickets/detallesTicket/}+${tickets.idTicket}"
                                        class="btn btn-outline-info">Ver detalles 
                                     </a>
+                                </td>
+                                <td>
+                                    <form method="POST" th:action="@{/tickets/favoritos/}+${tickets.idTicket}">
+                                        <div th:if="${tickets.favorito} == True">
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-heart" th:action="@{tickets/favoritos}"></i> Quitar Favorito
+                                            </button>
+                                        </div>
+                                        <div th:if="${tickets.favorito} == False">
+                                            <button class="btn btn-outline-danger">
+                                                <i class="fas fa-heart" type="submit"></i> Agregar Favorito
+                                            
+                                            </button>
+                                        </div>
+                                    </form>
                                 </td>
                             </tr>
                         </tbody>
@@ -111,6 +201,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                 <th>Resumen</th>
                                 <th>Fecha de Creacion</th>
                                 <th></th>
+                                <th></th>
+                                <th></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -123,13 +215,27 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                        class="btn btn-outline-info">Ver detalles 
                                     </a>
                                 </td>
+                                <td>
+                                    <form method="POST" th:action="@{/tickets/favoritos/}+${tickets.idTicket}">
+                                        <div th:if="${tickets.favorito} == True">
+                                            <button class="btn btn-danger">
+                                                <i class="fas fa-heart" th:action="@{tickets/favoritos}"></i> Quitar Favorito
+                                            </button>
+                                        </div>
+                                        <div th:if="${tickets.favorito} == False">
+                                            <button class="btn btn-outline-danger">
+                                                <i class="fas fa-heart" type="submit"></i> Agregar Favorito
+
+                                            </button>
+                                        </div>
+                                    </form>
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                <br>
             </div>
-            <br>
-        </div>
     </section>
 
     <!-------PANTALLA DETALLES TICKET--------------------------------------------------------------------------------------------------------->

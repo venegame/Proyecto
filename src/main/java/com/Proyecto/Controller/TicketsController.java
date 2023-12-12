@@ -74,4 +74,16 @@ public class TicketsController {
         comentarioService.save(comentarios);
         return "redirect:/tickets/detallesTicket/" + comentarios.getIdTicket();
     }
+    
+    @PostMapping("/favoritos/{idTicket}")
+    public String favoritos(Ticket ticket, Model model) {
+        ticket = ticketService.getTicket(ticket);
+        if (ticket.isFavorito()){
+            ticket.setFavorito(false);
+        }else if(!ticket.isFavorito()){
+            ticket.setFavorito(true);
+        }
+        ticketService.save(ticket);
+        return "redirect:/tickets/listado";
+    }
 }

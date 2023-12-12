@@ -50,7 +50,6 @@ public class MenusController {
         ticket.setEstado("Abierto");
         ticket.setFechaCreacion(LocalDateTime.now().toString());
         ticketService.save(ticket);
-        ticket.getIdTicket();
         return "redirect:/menus/confirmacion";
     }
     
@@ -78,5 +77,5 @@ public class MenusController {
 
         return "menus/menuPrincipal";
     }
-
+    
 }

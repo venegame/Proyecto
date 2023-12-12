@@ -22,11 +22,12 @@ public class Ticket implements Serializable{
     private String nombre;
     private String correo;
     private String rutaImagen;
+    private boolean favorito;
     
     public Ticket (){  
     }
- 
-    public Ticket(String resumen, String fechaCreacion, String descripcion, String prioridad, String estado, String resolucion, String tipoError, String nombre, String correo, String rutaImagen) {
+
+    public Ticket(String resumen, String fechaCreacion, String descripcion, String prioridad, String estado, String resolucion, String tipoError, String nombre, String correo, String rutaImagen, boolean favorito) {
         this.resumen = resumen;
         this.fechaCreacion = fechaCreacion;
         this.descripcion = descripcion;
@@ -37,8 +38,7 @@ public class Ticket implements Serializable{
         this.nombre = nombre;
         this.correo = correo;
         this.rutaImagen = rutaImagen;
+        this.favorito = favorito;
     }
- 
-    
  
 }
