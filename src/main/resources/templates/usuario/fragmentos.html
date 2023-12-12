@@ -8,7 +8,84 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
       xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity6">
     <head th:replace="layout/plantilla :: head"></head>
     <body>
-        <!-- 3 Sección principal para mostrar la informaccion de la entidad usuario -->
+
+        <!--BOTON AGREGAR USUARIOS------------------------------------------------------------------------------------------------------------->
+        <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container" sec:authorize="hasRole('ROLE_ADMIN')">
+                <div class="row">
+                    <div class="col-md-3">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarUsuario">
+                            <i class="fas fa-plus"></i> Agregar usuario
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--AGREGAR USUARIO-------------------------------------------------------------------------------------------------------------------->
+        <section th:fragment="agregarUsuario">
+            <div id="agregarUsuario" 
+                 class="modal fade" 
+                 tabindex="-1" 
+                 aria-labelledby="exampleModalLabel" 
+                 aria-hidden="true">
+                <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title">Agregar usuario</h5>
+                            <button type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/usuario/guardar}" th:object="${usuario}"
+                              method="POST" class="was-validated"
+                              enctype="multipart/form-data">
+                            <div class="modal-body">
+                                <input type="hidden" for="activo" th:value="True"/>
+                                <div class="mb-3">
+                                    <label for="username">Username</label>
+                                    <input type="text" class="form-control" name="username" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="nombre">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="password">Password</label>
+                                    <input type="password" class="form-control" name="password" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="email">Correo</label>
+                                    <input type="email" class="form-control" name="correo" required="true"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="telefono">telefono</label>
+                                    <input type="tel" class="form-control" name="telefono"/>
+                                </div>
+                                <div class="mb-3">
+                                    <label for="imagen">Imagen</label>
+                                    <input class="form-control" type="file" name="imagenFile"
+                                           onchange="readURL(this);"/>
+                                    <img id="blah" src="#" alt="Tu imagen" height="200"/>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!--LISTADO USUARIO-------------------------------------------------------------------------------------------------------------------->
         <section th:fragment="listadoUsuarios" id="usuarios">
             <div class="container">
                 <div class="row">
@@ -38,8 +115,8 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                 </a>
                                                 <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
                                                    class="btn btn-outline-danger">
-                                                    <i class="fas fa-trash"></i> Eliminar</a>
-                                                
+                                                    <i class="fas fa-trash"></i> Eliminar
+                                                </a>
                                             </td>
                                         </tr>
                                     </tbody>
@@ -50,10 +127,12 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                             </div>
                         </div>
                     </div>
-                    </div>
                 </div>
+            </div>
         </section>
-        <!-- 4 Fragmento que se utiliza en la página modifca.html -->
+
+
+        <!--MODIFICAR USUARIO------------------------------------------------------------------------------------------------------------------>
         <section th:fragment="editarUsuario">
             <div class="row">
                 <div class="col-md-2"></div>
@@ -63,16 +142,18 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                           class="was-validated"
                           enctype="multipart/form-data">
                         <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
-                         <section th:replace="~{usuario/fragmentos :: botonesEditar}"/>
+                        <section th:replace="~{usuario/fragmentos :: botonesEditar}"/>
                         <div id=details>
                             <div class="container">
                                 <div class="row">
                                     <div class="col">
                                         <div class="card">
-                                           <div class="card-header">
+                                            <input type="hidden" th:field="${usuario.password}" th:value="usuario.password"/>
+                                            <input type="hidden" th:field="${usuario.username}" th:value="usuario.username"/>
+                                            <div class="card-header">
                                                 <h4>Actualizar Usuario</h4>
                                             </div>
-                                           <div class="card-body">
+                                            <div class="card-body">
                                                 <div class="mb-3">
                                                     <label for="nombre">Nombre</label>
                                                     <input type="text" class="form-control" 
@@ -98,7 +179,7 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                                                            id="activo"
                                                            th:field="*{activo}">
                                                 </div>
-                                               <div class="mb-3">
+                                                <div class="mb-3">
                                                     <label for="imagen">Imágen</label>
                                                     <input class="form-control" type="file" name="imagenFile"
                                                            onchange="readURL(this);" />
@@ -113,7 +194,9 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
                 </div>
             </div>
         </section>
-        <!-- 5 Fragmento que se utiliza en el fragmento anterior -->
+
+
+        <!--BOTON MODIFICAR USUARIO------------------------------------------------------------------------------------------------------------>
         <section th:fragment="botonesEditar">
             <div class="container py-4 mb-4 bg-light">
                 <div class="row">
